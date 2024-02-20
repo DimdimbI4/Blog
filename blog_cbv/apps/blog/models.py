@@ -6,6 +6,15 @@ from django.urls import reverse
 
 from apps.services.utils import unique_slugfy
 
+class PostManager(models.Manager):
+    """
+    Кастомный менеджер для модели постов
+    """
+    def get_queryset(self):
+        """
+        Список постов(SQL запрос с фильтрацией по статусу опубликовано)
+        """
+        return super().get_queryset().filter(status='published')
 
 class Post(models.Model):
     """
@@ -35,6 +44,9 @@ class Post(models.Model):
     updater = models.ForeignKey(to=User, verbose_name='Обновил', on_delete=models.SET_NULL, null=True,
                                 related_name='updater_posts', blank=True)
     fixed = models.BooleanField(verbose_name='Прикреплено', default=False)
+
+    objects = models.Manager()
+    custom = PostManager()
 
     class Meta:
         db_table = 'blog_post'
