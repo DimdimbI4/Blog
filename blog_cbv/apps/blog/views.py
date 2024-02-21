@@ -4,6 +4,7 @@ from .models import Post, Category
 from .forms import PostCreateForm, PostUpdateForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from  ..services.mixins import AuthorRequiredMixin
 
 class PostListView(ListView):
     model = Post
@@ -67,7 +68,7 @@ class PostCreateView(LoginRequiredMixin ,CreateView):
         form.save()
         return super().form_valid(form)
 
-class PostUpdateView(LoginRequiredMixin, SuccessMessageMixin,UpdateView):
+class PostUpdateView(AuthorRequiredMixin, SuccessMessageMixin,UpdateView):
     """
     Представление обноавления материала на сайте
     """
