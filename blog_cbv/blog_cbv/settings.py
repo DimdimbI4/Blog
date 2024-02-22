@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'apps.accounts',
     'taggit',
+    'django_recaptcha',
 ]
 
 MIDDLEWARE = [
@@ -134,7 +135,8 @@ MEDIA_ROOT = (BASE_DIR / 'media')
 
 STATICFILES_DIRS = [BASE_DIR / 'templates/js/']
 
-
+RECAPTCHA_PUBLIC_KEY = '6Lc_VXwpAAAAAB9XmuAYdw_my7nna4nRiVkcK4gv'
+RECAPTCHA_PRIVATE_KEY = '6Lc_VXwpAAAAAIAJS3Daot2fSAzydIfKnr5e4NrS'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
