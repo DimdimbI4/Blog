@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'apps.accounts.middleware.ActiveUserMiddleware',
 ]
 
 ROOT_URLCONF = 'blog_cbv.urls'
@@ -138,6 +139,13 @@ MEDIA_ROOT = (BASE_DIR / 'media')
 STATICFILES_DIRS = [BASE_DIR / 'templates/js/']
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': (BASE_DIR / 'cache'),
+    }
+}
 
 CKEDITOR_CONFIGS = {
     'awesome_ckeditor': {
